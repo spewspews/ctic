@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{fancyvrb}
+
+\DefineVerbatimEnvironment{code}{Verbatim}{baselinestretch=.8}
+
+\setmainfont{Garamond Premier Pro}[Contextuals=AlternateOff]
+\setmathfont{Garamond Math}[Scale=MatchUppercase]
+\setmonofont{Monaspace Argon}[Scale=0.5]
+
+\setlength{\parindent}{0em}
+
+\begin{document}
+\begin{code}
+module chap1 where
+import Cat.Base
+\end{code}
+
+\textsc{Exercise} 1.1.i.i: Show that a morphism can have at most one inverse isomorphism.
+\vspace{10pt}
+
+Given \(f:x→y\) and \(g,g':y→x\) with \(fg=1_y,gf= 1_x,fg' = 1_y\) and \(g'f=1_x\), then \(g=1_xg=g'fg=g'1_y=g'\)
+
+\begin{code}
+Inverses-are-prop : ∀ {f : Hom a b} {g : Hom b a} → is-prop (Inverses f g)
+\end{code}
+\vspace{10pt}
+
+\textsc{Exercise} 1.1.i.ii: Consider a morphism \(f: x → y\). Show  that if there exists a pair of morphisms \(g,h:y\rightrightarrows x\) so that \(gf=1_x\) and \(fh=1_y\), then \(g = h\) and \(f\) is an isomorphism.
+\vspace{10pt}
+
+Then \(g = g1_y = gfh = 1_xh = h\) so that \(fg = fh = 1_y\) and we already know that \(gf = 1_x\) hence \(f\) is an isomorphism.
+
+\end{document}
