@@ -1,12 +1,6 @@
 name: ctic
-depend: 1lab
+depend: agda-categories
 include:
   .
 flags:
-  --cubical
-  --no-load-primitives
-  --postfix-projections
-  --rewriting
-  --guardedness
-  --two-level
   -W noUnsupportedIndexedMatch
