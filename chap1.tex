@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage[paperwidth=5.5in,paperheight=8.5in,margin=0.5in,footskip=.25in]{geometry}
+\usepackage{fontspec}
+\usepackage{mathtools}
+\usepackage{unicode-math}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\newcommand{\op}{\textrm{op}}
+
+\setmainfont{Garamond Premier Pro}[Contextuals=AlternateOff]
+\setmathfont{Garamond Math}[Scale=MatchUppercase]
+\setmonofont{Monaspace Argon}[Scale=0.7]
+
+\setlength{\parindent}{1em}
+\setlist{nosep,label=\roman*.}
+
+\begin{document}
+
+\begin{center}
+\section*{Chapter 1}
+\end{center}
+
+\noindent
+\textsc{Exercise} 1.1.i.i: Show that a morphism can have at most one inverse isomorphism.
+
+Given \(f:x→y\) and \(g,g':y→x\) with \(fg=1_y\), \(gf= 1_x\), \(fg' = 1_y\) and \(g'f=1_x\), then \(g=1_xg=g'fg=g'1_y=g'\)
+\vspace{10pt}
+
+\noindent
+\textsc{Exercise} 1.1.i.ii: Consider a morphism \(f: x → y\). Show  that if there exists a pair of morphisms \(g,h:y\rightrightarrows x\) so that \(gf=1_x\) and \(fh=1_y\), then \(g = h\) and \(f\) is an isomorphism.
+
+Then \(g = g1_y = gfh = 1_xh = h\) so that \(fg = fh = 1_y\) and we already know that \(gf = 1_x\) hence \(f\) is an isomorphism.
+\vspace{10pt}
+
+\noindent
+\textsc{Exercise} 1.1.1.iii: For any category \(\mathbf{C}\) and any object \(c∈\mathbf{C}\), show that:
+
+\begin{enumerate}
+\item There is a category \(c/\mathbf{C}\) whose objects are morphisms \(f:c→x\) with domain \(c\) and in which a morphism from \(f:c\to x\) to \(g:c\to y\) is a map \(h:x\to y\) between the codomains so that the triangle
+\begin{center}
+\begin{tikzcd}[column sep=small]
+& c \arrow[rd, "g"] \arrow[ld, "f"'] & \\
+x \arrow[rr, "h"'] & & y  
+\end{tikzcd}
+\end{center}
+commutes, i.e., so that \(g=hf\)
+
+Suppose \(f:c→x, g:c→y, h:c→z\) are objects of \(c/\mathbf{C}\) and \(α:x→y, β:y→z\) are morphisms \(f→g\) and \(g→h\) in \(c/\mathbf{C}\). In that case we have \(αf = g\) and \(βg = h\). Then define composition \(βα\) in \(c/\mathbf{C}\) as composition in \(\mathbf{C}\). This is a morphism \(f→h\) in \(c/\mathbf{C}\) because
+
+\begin{equation*}
+(βα)f = β(αf) = βg = h
+\end{equation*}
+Associativity follows from associativity in \(\mathbf{C}\).
+
+Define the identity \(1_f\) for \(f:c→x\) as the identity \(1_x\) in \(\mathbf{C}\). Then given \(α:f→g\) (\(α:x→y\) and \(αf=g\)), we have \(α1_f=α1_x=α\) and \(1_gα=1_yα=α\). 
+
+\item There is a category \(\mathbf{C}/c\) whose objects are morphisms \(f:x→c\) with codomain \(c\) and in which a morphism from \(f:x→c\) to \(g:y→c\) is a map \(h:x\to y\) between the codomains so that the triangle
+\begin{center}
+\begin{tikzcd}[column sep=small]
+x \arrow[rr, "h"] \arrow[rd, "f"'] & & y \arrow[ld, "g"]\\
+& c &
+\end{tikzcd}
+\end{center}
+commutes, i.e., so that \(f=gh\).
+\end{enumerate}
+
+\noindent
+\textsc{Exercise} 1.2.i: Show that \(\mathbf{C}/c≅(c/\mathbf{C}^\textrm{op})^\textrm{op}\). Defining \(\mathbf{C}/c\) to be \((c/\mathbf{C}^\textrm{op})^\textrm{op}\), deduce Exercise 1.1.iii(ii) from Exercise 1.1.iii(i).
+
+Say \(f\) is an object of \((c/\mathbf{C}^\textrm{op})^\textrm{op}\) which is, by definition, simply an object of \(c/\mathbf{C}^\textrm{op}\) which is a morphism \(f^\textrm{op}:c→x\) in \(\mathbf{C}^\textrm{op}\) which is simply a morphism \(f:x→c\) in \(\mathbf{C}\). This is the definition of objects in \(\mathbf{C}/c\).
+
+Now say \(f\) and \(g\) are objects of \((c/\mathbf{C}^\op)^\op\) which are morphisms \(f^\op:c→x\) and \(g^\op:c→y\) and say \(α^\op:f→g\) is a morphism in \((c/\mathbf{C}^\op)^\op\), i.e., \(α:g^\op→f^\op\) is a morphism in \(c/\mathbf{C}^\op\). This means \(α\) is a morphism \(α^\op:y→x\) in \(\mathbf{C}^\op\) such that \(α^\op g^\op=f^\op\). Then
+\begin{equation*}
+α^\op g^\op=f^\op ⇔ (gα)^\op = f^\op ⇔ gα=f
+\end{equation*}
+which means \(α\) is a morphism \(f→g\) in \(\mathbf{C}/c\).
+
+We deduce that \(\mathbf{C}/c≅(c/\mathbf{C}^\op)^\op\) is a category as follows: \(c/\mathbf{C}^\op\) is a category because \(\mathbf{C}\) is and \((c/\mathbf{C}^\op)^\op\) is a category because \(c/\mathbf{C}^\op\) is.
+\vspace{8pt}
+
+\noindent
+\textsc{Exercise} 1.2.ii:
+\begin{enumerate}
+\item Show that a morphism \(f:x→y\) is a split epimorphism in a category \textbf{C} if and only if for all \(c∈\mathbf{C}\), post-composition \(f_*:\mathbf{C}(c,x)→ \mathbf{C}(c,y)\) defines a surjective function.
+\vspace{5pt}
+
+\textsc{Proof:} If \(f\) is a split epi then we have \(f':y→x\) such that \(ff'=1_y\). Given \(g:c→y\) let \(g'=f'g\) in which case post-composition gives \(f_*(g') = fg'=ff'g=1_yg=g\) so that \(f_*\) is a surjection.
+
+In the other direction, if \(f_*\) is a surjection then \(1_y:y→y\) is in its image which is to say there exists \(f':y→x\) such that \(f_*(f') = ff'=1_y\). Thus \(f\) is a split epi.
+
+\item Argue by duality that \(f\) is a split monomorphism if and only if for all \(c∈\mathbf{C}\), pre-composition \(f^*:\mathbf{C}(y,c)→ \mathbf{C}(x,c)\) defines a surjective function.
+\vspace{5pt}
+
+By definition, \(f:x→y\) is a split mono if and only if \(f^\op:y→x\) is a split epi in \textbf{C}. This is the case if and only if post-composition \(f^\op_*:\mathbf{C}^\op(c, y)→\mathbf{C}^\op(c, x)\) is a surjection by the previous exercise. This is saying \(f^\op g^\op = (gf)^\op\) is a surjection on morphisms \(g'^\op:c→x\) which is the same as pre-composition \(gf\) being a surjection to \(g':x→c\).
+\end{enumerate}
+\end{document}
